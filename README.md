@@ -1,11 +1,16 @@
 # Eshop
-Running this project
-First you should have Python installed. Then install virtualenv
-# pip install virtualenv
-Clone or download this repository and open it. Run the following command in the base directory of this project
-# virtual env
-Active it with this command
-# course env/bin/activate
-# pip install django
-Now you can run the project with
+Make sure you have Python and Django installed. You can check if Python is installed by running
+# python --version
+To install Django, you can use 
+# pip install django.
+
+Create a virtual environment. Navigate to the project's directory using the command prompt, then create a virtual environment by running 
+# python -m venv env
+Activate the virtual environment by running
+# env\Scripts\activate 
+
+Run database migrations. In the command prompt, navigate to the project's directory and run 
+# python manage.py migrate
+
+Start the development server: Once the migrations are applied, you can start the development server by running 
 # python manage.py runserver
