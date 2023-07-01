@@ -1,0 +1,49 @@
+{% extends "main.html" %}
+{% block content %}
+<div class="container mt-3">
+
+    <div class="row mb-3 mt-5 justify-content-center">
+    <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 col-fix-side">
+            {% include "filters.html" %}
+        </div>
+
+        {% for laptop in laptops %}
+        <div class="col-3 mt-5">
+            <div class="card" style="width: 18rem;">
+                   <img src="{{MEDIA_URL}}{{laptop.image.url}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title"> {{ laptop.name }}</h5>
+                    <p class="card-text">
+                    <div><b>Screen </b>{{ laptop.screen }}</div>
+                    <div><b>Screen Size</b>{{ laptop.screenSize }}"</div>
+                    <div><b>Memory </b>{{ laptop.memory }}</div>
+                    <div><b>RAM Memory </b>{{ laptop.RAM }}</div>
+                    <div><b>Battery </b>{{ laptop.battery }}</div>
+                    </p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><b>Price</b>
+                      {% if laptop.on_sale %}
+                            <span style="color: red">${{ laptop.discount_price }}</span>
+                        {% else %}
+                            <span>${{ laptop.discount_price }}</span>
+                        {% endif %}
+                    </li>
+                    <li class="list-group-item text-center">
+                        <form action="{% url 'add_to_cart' laptop.pk %}" method="POST">
+                                {% csrf_token %}
+                            <button type="submit" class="btn btn-secondary opacity-50">Add to Card
+                            </button>
+                        </form>
+
+
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+
+{% endfor %}
+    </div>
+</div>
+{% endblock %}

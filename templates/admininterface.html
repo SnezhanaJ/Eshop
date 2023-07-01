@@ -1,0 +1,51 @@
+{% extends "main.html" %}
+{% block content %}
+<div class="container">
+    <div class="row">
+    <div class="col-md">
+        <div class="card card-body">
+            <h5>Products</h5>
+        </div>
+        <div class="card card-body">
+            <table class="table">
+                <tr>
+                    <th>Product</th>
+                    <th>Category</th>
+                    <th>On Sale</th>
+                    <th>Price</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                {% for product in products %}
+                    <tr>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.category }}</td>
+                        {% if product.on_sale %}
+                            <td>Yes</td>
+                        {% else %}
+                            <td>No</td>
+                        {% endif %}
+
+                    <td>{{ product.price }}</td>
+                        <td> <a class="btn btn-sm" style="background-color: #c8e6d4" href="{% url 'update_product' product.id %}">Update</a> </td>
+                        <td> <a class="btn btn-sm" style="background-color: #ed4040" href="{% url 'delete_product' product.id %}">Delete</a> </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+    </div>
+<br>
+<div class="container">
+<div class="row">
+    <div class="col-2">
+    <a class="btn btn-sm" style="background-color: darkgrey" href="{% url 'add' %}">Add Products</a>
+        <br>
+</div>
+    </div>
+    <br>
+    </div>
+
+</div>
+
+{% endblock %}

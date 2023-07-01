@@ -1,0 +1,24 @@
+{% extends "main.html" %}
+{% block content %}
+    <div class="container col-6">
+    <div class="row justify-content-center">
+        <div class="col-md">
+            <div class="card card-body">
+
+               <h5>Customer Information: </h5>
+                <div>Username: {{ mycustomer.user.username }}</div>
+                <div>Email: {{ mycustomer.user.email }}</div>
+                <div>Total Orders: {{ total_orders }}</div>
+
+                <hr>
+                <a class="btn btn-outline-danger btn-sm btn-block" href="{% url 'delete_customer' mycustomer.id %}"> Delete Customer</a>
+
+        </div>
+            </div>
+
+    </div>
+    </div>
+
+    <br>
+
+{% endblock %}

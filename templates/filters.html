@@ -1,0 +1,15 @@
+ <div class="aside ">
+<h5>Filters</h5>
+<hr>
+            <form method="GET">
+                <div class="mb-3">
+                    <label for="sort_by" class="form-label">Sort By:</label>
+                    <select class="form-select" id="sort_by" name="sort_by">
+                        <option value="">-- Select --</option>
+                        <option value="price_asc" {% if sort_by == 'price_asc' %}selected{% endif %}>Price (Low to High)</option>
+                        <option value="price_desc" {% if sort_by == 'price_desc' %}selected{% endif %}>Price (High to Low)</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-secondary opacity-50">Apply Filters</button>
+            </form>
+</div>
