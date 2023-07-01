@@ -1,0 +1,48 @@
+{% extends "main.html" %}
+{% block content %}
+
+<div class="container  mt-3">
+
+
+    <div class="row mb-3 mt-5 justify-content-center">
+<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 col-fix-side">
+            {% include "filters.html" %}
+        </div>
+
+       {% for phone in phones %}
+        <div class="col-3 mt-5">
+            <div class="card" style="width: 18rem;">
+                   <img src="{{MEDIA_URL}}{{phone.image.url}}" class="card-img-top" alt="..." style="height: 300px;width: 150px;margin-left: 70px;">
+                <div class="card-body">
+                    <h5 class="card-title"> {{ phone.name }}</h5>
+                    <p class="card-text">
+                    <div><b>Screen </b>{{ phone.screen }}</div>
+                    <div><b>Screen Size</b>{{ phone.screenSize }}"</div>
+                    <div><b>Memory </b>{{ phone.memory }}</div>
+                    <div><b>Camera </b>{{ phone.camera }}</div>
+                    <div><b>CPU </b>{{ phone.CPU }}</div>
+
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><b>Price</b>
+                        {% if phone.on_sale %}
+                            <span style="color: red">${{ phone.discount_price }}</span>
+                        {% else %}
+                            <span>${{ phone.discount_price }}</span>
+                        {% endif %}
+                        </li>
+                    <li class="list-group-item text-center">
+                          <form action="{% url 'add_to_cart' phone.pk %}" method="POST">
+                                {% csrf_token %}
+                            <button type="submit" class="btn btn-secondary opacity-50">Add to Card</button>
+                        </form>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+
+{% endfor %}
+    </div>
+</div>
+{% endblock %}
